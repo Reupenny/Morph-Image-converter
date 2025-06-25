@@ -1,0 +1,95 @@
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+img {
+  max-width: 80%;
+  padding: 1em;
+}
+
+/* .uploader {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+} */
+
+/* li {
+  dec
+} */
+
+
+body {
+  min-height: 100vh;
+  background: #0b0d15;
+  color: #a2a5b3;
+  align-content: center;
+  position: relative;
+  z-index: -2;
+}
+
+h1 {
+  color: white;
+}
+
+.uploader {
+  margin: 1em auto;
+  padding: 2em;
+  width: 300px;
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+
+}
+
+.uploader::after,
+.uploader::before,
+.glow::after,
+.glow::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ffffff00, #ffffff00, #ffffff00, #ffffff00, #ffffff00);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
+  transition: background-image ease-in-out 5000ms;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.uploader:hover::after,
+.uploader:hover::before,
+.glow::after,
+.glow::before {
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+}
+
+.uploader::before,
+.glow::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+
+  to {
+    --angle: 360deg;
+  }
+}
