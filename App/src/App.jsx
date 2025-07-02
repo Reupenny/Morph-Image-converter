@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { blobToURL } from 'image-resize-compress';
-import { stitch } from './model/stitch';
+import { imageConverter } from './model/imageConverter';
 import FileUploader from './model/fileUpload';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
       if (files) {
         for (const file of files) {
           try {
-            const resizedBlob = await stitch(file, quality, width, height, format);
+            const resizedBlob = await imageConverter(file, quality, width, height, format);
             const url = await blobToURL(resizedBlob);
             seturl(url);
           } catch (error) {

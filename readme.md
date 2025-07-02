@@ -1,6 +1,6 @@
-# Stitch - Image converter
+# Morph - Image converter
 
-Stitch is a simple image converter
+Morph is a simple image converter
 
 ### Packages
 
