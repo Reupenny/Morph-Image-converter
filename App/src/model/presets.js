@@ -1,19 +1,11 @@
 class SavedPresets {
     constructor() {
         this.presets = this.loadPresetsFromStorage()
-        this.currentPresetNumber = this.presetNumLocal()
     }
     savePreset(newPreset) {
         this.presets.push(newPreset)
         this.savePresetsToStorage()
         console.log('save')
-    }
-    newPresetNumber() {
-        const number = this.currentPresetNumber
-        const newNumber = number + 1
-        localStorage.setItem('currentPresetNumber', newNumber)
-        console.log('Preset Number: ' + newNumber)
-        return newNumber
     }
 
     // Local Storage
@@ -26,16 +18,11 @@ class SavedPresets {
     savePresetsToStorage() {
         localStorage.setItem('presets', JSON.stringify(this.presets))
     }
-    presetNumLocal() {
-        const number = localStorage.getItem('currentPresetNumber')
-        const currentNumber = number ? number : 0
-        return currentNumber
-    }
 }
 
 class Preset {
-    constructor(presetNumber, format, quality, width, height) {
-        this.presetNumber = presetNumber
+    constructor(name, format, quality, width, height) {
+        this.name = name
         this.format = format
         this.quality = quality
         this.width = width

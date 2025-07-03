@@ -19,9 +19,9 @@ function FileUploader({ uploadedFiles, setDragging, isDragging }) {
         <div className={`uploader ${isDragging ? "glow" : ""}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            onDragEnter={() => setDragging(true)}
-            onDragLeave={() => setDragging(false)}
-        ><i class="morphIcons icon-Add-file"></i>
+        // onDragEnter={() => setDragging(true)}
+        // onDragLeave={() => setDragging(false)}
+        ><i className="morphIcons icon-Add-file"></i>
             <p>Drag and drop images here</p>
             <div>
                 {files.map((file, index) => (

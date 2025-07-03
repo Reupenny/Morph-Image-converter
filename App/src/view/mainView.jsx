@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import { blobToURL } from 'image-resize-compress';
 import { imageConverter } from '../model/imageConverter';
-import FileUploader from '../model/fileUpload';
+import FileUploader from './fileUpload';
 
 function MainView({ controller }) {
     const [files, setFiles] = useState([])
     const [url, seturl] = useState()
+    const [presetName, setPresetName] = useState('')
     const [quality, setQuality] = useState(100)
-    const [width, setWidth] = useState('auto')
-    const [height, setHeight] = useState('auto')
+    const [width, setWidth] = useState('')
+    const [height, setHeight] = useState('')
     const [format, setFormat] = useState('webp')
     const [isDragging, setIsDragging] = useState(false);
 
@@ -22,7 +23,6 @@ function MainView({ controller }) {
                 for (const file of files) {
                     try {
                         const resizedBlob = await imageConverter(file, quality, width, height, format)
-                        controller.createPreset(format, quality, width, height)
                         const url = await blobToURL(resizedBlob);
                         seturl(url);
                     } catch (error) {
@@ -49,26 +49,64 @@ function MainView({ controller }) {
             case 'newHeight':
                 setHeight(value)
                 break
+            case 'newName':
+                setPresetName(value)
+                break
             default:
                 break
         }
+    }
+    const handleClick = (e) => {
+        controller.createPreset(presetName, format, quality, width, height)
     }
 
 
     return (
         <div onDragEnter={handleDragEnter}
             onDragLeave={handleDragLeave}>
-            <div>
-                <form action="">
-                    <select id="newType" name="newType" onChange={handleChange}>
-                        <option value="" disabled>File Type</option>
-                        <option value="png">PNG</option>
-                        <option value="jpg">JPG</option>
-                        <option value="webp">WEBP</option>
-                    </select>
-                    <input type="number" id="newQuality" name="newQuality" value={quality} onChange={handleChange} max={100} min={1} />
-                    <input type="string" id="newWidth" name="newWidth" value={width} onChange={handleChange} max={100} min={1} />
-                    <input type="string" id="newHeight" name="newHeight" value={height} onChange={handleChange} max={100} min={1} />
+            <div className='settings'>
+                <form>
+                    <div className='row'>
+                        <div className="input-container">
+                            <select id="newType" name="newType" onChange={handleChange}>
+                                <option value="" disabled>Format</option>
+                                <option value="png">PNG</option>
+                                <option value="jpg">JPG</option>
+                                <option value="webp">WEBP</option>
+                            </select>
+                            <label htmlFor="newType" className={`floating-label ${format ? 'active' : ''}`}>
+                                Format
+                            </label>
+                        </div>
+                        <div className="input-container">
+                            <input type="number" id="newQuality" name="newQuality" value={quality} onChange={handleChange} max={100} min={1} />
+                            <label htmlFor="newQuality" className={`floating-label ${quality ? 'active' : ''}`}>
+                                Quality
+                            </label>
+                        </div>
+                    </div><div className='row'>
+                        <div className="input-container">
+                            <input type="number" id="newWidth" name="newWidth" value={width} onChange={handleChange} max={100} min={0} />
+                            <label htmlFor="newWidth" className={`floating-label ${width ? 'active' : ''}`}>
+                                Width (px)
+                            </label>
+                        </div>
+                        <div className="input-container">
+                            <input type="number" id="newHeight" name="newHeight" value={height} onChange={handleChange} max={100} min={0} />
+                            <label htmlFor="newHeight" className={`floating-label ${height ? 'active' : ''}`}>
+                                Height (px)
+                            </label>
+                        </div>
+                    </div><div className='row'>
+                        <div className="input-container">
+                            <input type="text" id="newName" name="newName" value={presetName} onChange={handleChange} />
+                            <label htmlFor="newName" className={`floating-label ${presetName ? 'active' : ''}`}>
+                                Preset Name
+                            </label>
+                        </div>
+                        <button onClick={handleClick}>Save</button>
+                    </div>
+                    <p>Presets coming soon.</p>
                 </form>
             </div>
             <FileUploader uploadedFiles={setFiles} setDragging={setIsDragging} isDragging={isDragging} />

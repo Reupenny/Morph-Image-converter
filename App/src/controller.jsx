@@ -4,9 +4,8 @@ class MorphController {
         this.preset = Preset
     }
 
-    async createPreset(format, quality, width, height) {
-        const presetNumber = this.savedPresets.newPresetNumber()
-        const newPreset = new this.preset(presetNumber, format, quality, width, height)
+    async createPreset(name, format, quality, width, height) {
+        const newPreset = new this.preset(name, format, quality, width, height)
         await this.savedPresets.savePreset(newPreset)
     }
 }
