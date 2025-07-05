@@ -12,6 +12,7 @@ function MainView({ controller }) {
     const [height, setHeight] = useState('')
     const [format, setFormat] = useState('webp')
     const [isDragging, setIsDragging] = useState(false);
+    const [auto, setAuto] = useState(true);
 
     const handleDragEnter = () => setIsDragging(true);
     const handleDragLeave = () => setIsDragging(false);
@@ -31,9 +32,10 @@ function MainView({ controller }) {
                 }
             }
         }
-
-        processFiles();
-    }, [files, quality, width, height, format])
+        if (auto) {
+            processFiles();
+        }
+    }, [files, quality, width, height, format, auto])
     const handleChange = (e) => {
         const { id, value } = e.target
         switch (id) {
@@ -52,6 +54,9 @@ function MainView({ controller }) {
             case 'newName':
                 setPresetName(value)
                 break
+            case 'newAuto':
+                setAuto(value)
+                break
             default:
                 break
         }
@@ -61,6 +66,22 @@ function MainView({ controller }) {
     }
     const handleClick = (e) => {
         // to handle the saved menu pop-out.
+    }
+    const handleConvert = (e) => {
+        async function processFiles() {
+            if (files) {
+                for (const file of files) {
+                    try {
+                        const resizedBlob = await imageConverter(file, quality, width, height, format)
+                        const url = await blobToURL(resizedBlob);
+                        seturl(url);
+                    } catch (error) {
+                        console.error("Error processing image:", error);
+                    }
+                }
+            }
+        }
+        processFiles();
     }
 
 
@@ -94,20 +115,37 @@ function MainView({ controller }) {
                                     Quality
                                 </label>
                             </div>
-                        </div><div className='row'>
+                        </div>
+                        <div className='row'>
                             <div className="input-container">
-                                <input type="number" id="newWidth" name="newWidth" value={width} onChange={handleChange} max={100} min={0} />
+                                <input type="number" id="newWidth" name="newWidth" value={width} onChange={handleChange} min={0} />
                                 <label htmlFor="newWidth" className={`floating-label ${width ? 'active' : ''}`}>
                                     Width (px)
                                 </label>
                             </div>
                             <div className="input-container">
-                                <input type="number" id="newHeight" name="newHeight" value={height} onChange={handleChange} max={100} min={0} />
+                                <input type="number" id="newHeight" name="newHeight" value={height} onChange={handleChange} min={0} />
                                 <label htmlFor="newHeight" className={`floating-label ${height ? 'active' : ''}`}>
                                     Height (px)
                                 </label>
                             </div>
-                        </div><div className='row'>
+                        </div>
+
+                        <div className='row'>
+                            <div className="input-container">
+                                <input type="checkbox" id="newAuto" name="newAuto" value={auto} onChange={handleChange} />
+                                <label htmlFor="newAuto"> Auto convert</label>
+                            </div>
+                            <div className="input-container">
+                                <input type="checkbox" id="newAuto" name="newAuto" value={auto} onChange={handleChange} disabled />
+                                <label htmlFor="newAuto"> Auto download</label>
+                            </div>
+                            <div className="input-container">
+                                <button onClick={handleConvert}>Convert</button>
+                            </div>
+                        </div>
+
+                        <div className='row'>
                             <div className="input-container">
                                 <input type="text" id="newName" name="newName" value={presetName} onChange={handleChange} />
                                 <label htmlFor="newName" className={`floating-label ${presetName ? 'active' : ''}`}>
@@ -116,6 +154,7 @@ function MainView({ controller }) {
                             </div>
                             <button onClick={handleSave}>Save</button>
                         </div>
+
                         <p>Presets coming soon.</p>
                         <button onClick={handleClick}>View saved</button>
                     </form>
