@@ -1,6 +1,7 @@
 # Morph - Image converter
 
-Morph is a simple image converter
+Morph is a simple image converter app.
+With the ability to save commonly used presets.
 
 ### Packages
 
