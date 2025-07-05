@@ -62,56 +62,60 @@ function MainView({ controller }) {
 
 
     return (
-        <div onDragEnter={handleDragEnter}
-            onDragLeave={handleDragLeave}>
-            <div className='settings'>
-                <form>
-                    <div className='row'>
-                        <div className="input-container">
-                            <select id="newType" name="newType" onChange={handleChange}>
-                                <option value="" disabled>Format</option>
-                                <option value="png">PNG</option>
-                                <option value="jpg">JPG</option>
-                                <option value="webp">WEBP</option>
-                            </select>
-                            <label htmlFor="newType" className={`floating-label ${format ? 'active' : ''}`}>
-                                Format
-                            </label>
-                        </div>
-                        <div className="input-container">
-                            <input type="number" id="newQuality" name="newQuality" value={quality} onChange={handleChange} max={100} min={1} />
-                            <label htmlFor="newQuality" className={`floating-label ${quality ? 'active' : ''}`}>
-                                Quality
-                            </label>
-                        </div>
-                    </div><div className='row'>
-                        <div className="input-container">
-                            <input type="number" id="newWidth" name="newWidth" value={width} onChange={handleChange} max={100} min={0} />
-                            <label htmlFor="newWidth" className={`floating-label ${width ? 'active' : ''}`}>
-                                Width (px)
-                            </label>
-                        </div>
-                        <div className="input-container">
-                            <input type="number" id="newHeight" name="newHeight" value={height} onChange={handleChange} max={100} min={0} />
-                            <label htmlFor="newHeight" className={`floating-label ${height ? 'active' : ''}`}>
-                                Height (px)
-                            </label>
-                        </div>
-                    </div><div className='row'>
-                        <div className="input-container">
-                            <input type="text" id="newName" name="newName" value={presetName} onChange={handleChange} />
-                            <label htmlFor="newName" className={`floating-label ${presetName ? 'active' : ''}`}>
-                                Preset Name
-                            </label>
-                        </div>
-                        <button onClick={handleClick}>Save</button>
-                    </div>
-                    <p>Presets coming soon.</p>
-                </form>
-            </div>
-            <FileUploader uploadedFiles={setFiles} setDragging={setIsDragging} isDragging={isDragging} />
-            {url && <img src={url} alt="Resized image" />}
+        <>  <div id="custom-titlebar">
+            <img className='logo' src="./images/logo.webp" width='200px' alt="Morph Logo" />
         </div>
+            <div onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}>
+                <div className='settings'>
+                    <form>
+                        <div className='row'>
+                            <div className="input-container">
+                                <select id="newType" name="newType" onChange={handleChange}>
+                                    <option value="" disabled>Format</option>
+                                    <option value="png">PNG</option>
+                                    <option value="jpg">JPG</option>
+                                    <option value="webp">WEBP</option>
+                                </select>
+                                <label htmlFor="newType" className={`floating-label ${format ? 'active' : ''}`}>
+                                    Format
+                                </label>
+                            </div>
+                            <div className="input-container">
+                                <input type="number" id="newQuality" name="newQuality" value={quality} onChange={handleChange} max={100} min={1} />
+                                <label htmlFor="newQuality" className={`floating-label ${quality ? 'active' : ''}`}>
+                                    Quality
+                                </label>
+                            </div>
+                        </div><div className='row'>
+                            <div className="input-container">
+                                <input type="number" id="newWidth" name="newWidth" value={width} onChange={handleChange} max={100} min={0} />
+                                <label htmlFor="newWidth" className={`floating-label ${width ? 'active' : ''}`}>
+                                    Width (px)
+                                </label>
+                            </div>
+                            <div className="input-container">
+                                <input type="number" id="newHeight" name="newHeight" value={height} onChange={handleChange} max={100} min={0} />
+                                <label htmlFor="newHeight" className={`floating-label ${height ? 'active' : ''}`}>
+                                    Height (px)
+                                </label>
+                            </div>
+                        </div><div className='row'>
+                            <div className="input-container">
+                                <input type="text" id="newName" name="newName" value={presetName} onChange={handleChange} />
+                                <label htmlFor="newName" className={`floating-label ${presetName ? 'active' : ''}`}>
+                                    Preset Name
+                                </label>
+                            </div>
+                            <button onClick={handleClick}>Save</button>
+                        </div>
+                        <p>Presets coming soon.</p>
+                    </form>
+                </div>
+                <FileUploader uploadedFiles={setFiles} setDragging={setIsDragging} isDragging={isDragging} />
+                {url && <img src={url} alt="Resized image" />}
+            </div>
+        </>
     )
 }
 

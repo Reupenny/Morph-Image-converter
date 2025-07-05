@@ -24,10 +24,12 @@
 }
 
 #root {
+  min-height: 88vh;
   max-width: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  align-content: center;
 }
 
 img {
@@ -68,12 +70,24 @@ button:hover {
 }
 
 body {
-  min-height: 100vh;
   background: #0b0d15;
   color: #a2a5b3;
-  align-content: center;
-  position: relative;
-  z-index: -2;
+  margin: 0;
+}
+
+.logo {
+  padding: 0;
+  -webkit-app-region: drag;
+}
+
+#custom-titlebar {
+  -webkit-app-region: drag;
+  /* Makes the title bar draggable */
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  padding-top: 1em;
 }
 
 h1 {

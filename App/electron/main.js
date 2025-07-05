@@ -18,11 +18,19 @@ function createWindow() {
             nodeIntegration: false,
             contextIsolation: true,
             enableRemoteModule: false,
+        },
+        // --- THIS IS THE KEY PART ---
+        titleBarStyle: 'hidden', // This hides the standard native title bar
+        titleBarOverlay: {
+            color: '#2f3241',      // <--- Your desired background color for the custom area
+            symbolColor: '#74b1be', // <--- Color of the minimize/maximize/close symbols
+            height: 32              // <--- Height of the title bar overlay (adjust as needed)
         }
+        // --- END KEY PART ---
     });
 
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
-    // mainWindow.webContents.openDevTools(); // this is optional thing, use it if you see a devTool window opened
+    mainWindow.webContents.openDevTools(); // Show Devtools
 }
 
 app.whenReady().then(() => {
