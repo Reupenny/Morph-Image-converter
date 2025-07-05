@@ -56,8 +56,11 @@ function MainView({ controller }) {
                 break
         }
     }
-    const handleClick = (e) => {
+    const handleSave = (e) => {
         controller.createPreset(presetName, format, quality, width, height)
+    }
+    const handleClick = (e) => {
+        // to handle the saved menu pop-out.
     }
 
 
@@ -65,6 +68,10 @@ function MainView({ controller }) {
         <>  <div id="custom-titlebar">
             <img className='logo' src="./images/logo.webp" width='200px' alt="Morph Logo" />
         </div>
+            <div className='presets'>
+                <h2>Saved</h2>
+                <div></div>
+            </div>
             <div onDragEnter={handleDragEnter}
                 onDragLeave={handleDragLeave}>
                 <div className='settings'>
@@ -107,9 +114,10 @@ function MainView({ controller }) {
                                     Preset Name
                                 </label>
                             </div>
-                            <button onClick={handleClick}>Save</button>
+                            <button onClick={handleSave}>Save</button>
                         </div>
                         <p>Presets coming soon.</p>
+                        <button onClick={handleClick}>View saved</button>
                     </form>
                 </div>
                 <FileUploader uploadedFiles={setFiles} setDragging={setIsDragging} isDragging={isDragging} />
