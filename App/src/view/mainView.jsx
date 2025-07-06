@@ -141,6 +141,7 @@ function MainView({ controller }) {
                                 <label htmlFor="newAuto"> Auto download</label>
                             </div> */}
                             <div className="input-container">
+
                                 <button onClick={handleConvert}>Convert</button>
                             </div>
                         </div>
