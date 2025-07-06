@@ -4,11 +4,11 @@ Morph is a desktop application built with Electron and React that allows users t
 
 ## Features
 
-- **Image Conversion**: Convert images between different formats (e.g., PNG, JPEG, WebP).
+- **Image Conversion**: Convert images between different formats PNG, JPEG, WebP.
 - **Image Resizing**: Resize images to custom dimensions or predefined presets.
 - **Compression**: Optimize image file sizes while maintaining quality.
 - **User-Friendly Interface**: A clean and intuitive UI built with React.
-- **Cross-Platform**: Available on macOS and Windows.
+- **Cross-Platform**: Will be available on macOS Windows & Linux.
 
 ## Technologies Used
 
@@ -16,7 +16,6 @@ Morph is a desktop application built with Electron and React that allows users t
 - **React**: A JavaScript library for building user interfaces.
 - **Vite**: A fast build tool for modern web projects.
 - **image-resize-compress**: A library for image resizing and compression.
-- **ESLint**: For code linting.
 
 ## Installation
 
