@@ -69,11 +69,3 @@ npx electron-builder
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-With the ability to save commonly used presets.
-
-### Packages
-
-https://www.npmjs.com/package/image-resize-compress
-
-npm create vite@latest
