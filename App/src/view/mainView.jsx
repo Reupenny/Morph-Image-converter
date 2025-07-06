@@ -37,7 +37,7 @@ function MainView({ controller }) {
         }
     }, [files, quality, width, height, format, auto])
     const handleChange = (e) => {
-        const { id, value } = e.target
+        const { id, value, checked } = e.target
         switch (id) {
             case 'newQuality':
                 setQuality(value)
@@ -55,7 +55,7 @@ function MainView({ controller }) {
                 setPresetName(value)
                 break
             case 'newAuto':
-                setAuto(value)
+                setAuto(checked)
                 break
             default:
                 break
@@ -133,11 +133,11 @@ function MainView({ controller }) {
 
                         <div className='row'>
                             <div className="input-container">
-                                <input type="checkbox" id="newAuto" name="newAuto" value={auto} onChange={handleChange} />
+                                <input type="checkbox" id="newAuto" name="newAuto" checked={auto} onChange={handleChange} />
                                 <label htmlFor="newAuto"> Auto convert</label>
                             </div>
                             <div className="input-container">
-                                <input type="checkbox" id="newAuto" name="newAuto" value={auto} onChange={handleChange} disabled />
+                                <input type="checkbox" id="newAuto" name="newAuto" checked={auto} onChange={handleChange} disabled />
                                 <label htmlFor="newAuto"> Auto download</label>
                             </div>
                             <div className="input-container">
