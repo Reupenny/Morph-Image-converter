@@ -136,10 +136,10 @@ function MainView({ controller }) {
                                 <input type="checkbox" id="newAuto" name="newAuto" checked={auto} onChange={handleChange} />
                                 <label htmlFor="newAuto"> Auto convert</label>
                             </div>
-                            <div className="input-container">
+                            {/* <div className="input-container">
                                 <input type="checkbox" id="newAuto" name="newAuto" checked={auto} onChange={handleChange} disabled />
                                 <label htmlFor="newAuto"> Auto download</label>
-                            </div>
+                            </div> */}
                             <div className="input-container">
                                 <button onClick={handleConvert}>Convert</button>
                             </div>
