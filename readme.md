@@ -18,12 +18,14 @@ What needs to be done before V1 is officialy released.
 * Ability to save presets.
 * Auto download toggle
 * Auto convert toggle(makes using presets super easy)
+* Clean up readme and add a video.
 
 ### Minor issues to have fixed
 
 Issues that could be a minor release after V1.
 
 * drop image anywhere on the app not just the drop zone
+* create a webpage for the app
 
 ## Technologies Used
 
