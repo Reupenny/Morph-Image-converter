@@ -10,6 +10,21 @@ Morph is a desktop application built with Electron and React that allows users t
 - **User-Friendly Interface**: A clean and intuitive UI built with React.
 - **Cross-Platform**: Will be available on macOS Windows & Linux.
 
+
+## Initial Release roadmap
+
+What needs to be done before V1 is officialy released.
+
+* Ability to save presets.
+* Auto download toggle
+* Auto convert toggle(makes using presets super easy)
+
+### Minor issues to have fixed
+
+Issues that could be a minor release after V1.
+
+* drop image anywhere on the app not just the drop zone
+
 ## Technologies Used
 
 - **Electron**: For building cross-platform desktop applications.
