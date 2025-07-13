@@ -84,6 +84,20 @@ function MainView({ controller }) {
         processFiles();
     }
 
+    const handleDownload = (e) => {
+        e.preventDefault(); // Prevent the default action of the click event
+        if (url) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `resized_image.${format}`; // You can customize the filename
+            link.style.display = 'none'; // Hide the link
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    };
+
 
     return (
         <>  <div id="custom-titlebar">
@@ -99,7 +113,7 @@ function MainView({ controller }) {
                     <form>
                         <div className='row'>
                             <div className="input-container">
-                                <select id="newType" name="newType" onChange={handleChange}>
+                                <select id="newType" name="newType" onChange={handleChange} value={format}>
                                     <option value="" disabled>Format</option>
                                     <option value="png">PNG</option>
                                     <option value="jpg">JPG</option>
@@ -161,7 +175,7 @@ function MainView({ controller }) {
                     </form>
                 </div>
                 <FileUploader uploadedFiles={setFiles} setDragging={setIsDragging} isDragging={isDragging} />
-                {url && <img src={url} alt="Resized image" />}
+                {url && <div className='image'><i className="morphIcons icon-Download download" onClick={handleDownload}></i><img src={url} alt="Resized image" /></div>}
             </div>
         </>
     )
