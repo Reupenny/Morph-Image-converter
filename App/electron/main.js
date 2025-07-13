@@ -30,7 +30,7 @@ function createWindow() {
     });
 
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
-    mainWindow.webContents.openDevTools(); // Show Devtools
+    // mainWindow.webContents.openDevTools(); // Show Devtools
 }
 
 app.whenReady().then(() => {
